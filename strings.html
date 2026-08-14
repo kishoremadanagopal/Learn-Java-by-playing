@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Strings — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing strings in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Strings</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "strings",
+  title: "Strings",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Concatenate first name and last name with a space between them.", "before": "String full = firstName ", "blank": "+ \" \" + lastName", "after": ";", "hint": "The + operator joins strings."}, {"lvl": 1, "prompt": "Get the number of characters in the message string.", "before": "int len = message", "blank": ".length()", "after": ";", "hint": "Unlike arrays, String uses a method here, with parentheses."}, {"lvl": 1, "prompt": "Convert the string to all uppercase letters.", "before": "String shout = word", "blank": ".toUpperCase()", "after": ";", "hint": "A String method with no arguments."}, {"lvl": 2, "prompt": "Compare two strings for equal content, not reference identity.", "before": "if (input", "blank": ".equals(\"yes\")", "after": ") {\n    proceed();\n}", "hint": "Never use == to compare String content."}, {"lvl": 2, "prompt": "Check whether the sentence contains the word \"Java\".", "before": "if (sentence", "blank": ".contains(\"Java\")", "after": ") {\n    matched++;\n}", "hint": "A String method that takes a substring to search for."}, {"lvl": 2, "prompt": "Split the csv line on commas into an array of fields.", "before": "String[] fields = line", "blank": ".split(\",\")", "after": ";", "hint": "Takes a delimiter and returns a String array."}, {"lvl": 3, "prompt": "Extract the substring from index 0 up to (not including) index 4.", "before": "String prefix = code", "blank": ".substring(0, 4)", "after": ";", "hint": "substring(start, end) \u2014 end index is exclusive."}, {"lvl": 3, "prompt": "Efficiently build a string in a loop using StringBuilder, appending each word.", "before": "StringBuilder sb = new StringBuilder();\nfor (String w : words) {\n    sb", "blank": ".append(w)", "after": ";\n}", "hint": "StringBuilder's method for adding onto the end."}, {"lvl": 3, "prompt": "Chain trim and toLowerCase on the raw input in a single expression.", "before": "String clean = raw", "blank": ".trim().toLowerCase()", "after": ";", "hint": "Both are no-argument String methods, called back to back."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Encapsulation & access modifiers — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing encapsulation & access modifiers in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Encapsulation & access modifiers</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "encapsulation",
+  title: "Encapsulation & access modifiers",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Make the balance field inaccessible from outside the class.", "before": "class Account {\n    ", "blank": "private double balance", "after": ";\n}", "hint": "The most restrictive access modifier."}, {"lvl": 1, "prompt": "Declare a public getter for the private name field.", "before": "class Person {\n    private String name;\n\n    ", "blank": "public String getName()", "after": " {\n        return name;\n    }\n}", "hint": "Getter convention: public, returns the field's type, named getFieldName."}, {"lvl": 1, "prompt": "Declare a public setter for the private name field.", "before": "class Person {\n    private String name;\n\n    ", "blank": "public void setName(String name)", "after": " {\n        this.name = name;\n    }\n}", "hint": "Setter convention: public void setFieldName(type param)."}, {"lvl": 2, "prompt": "Validate input inside the setter before assigning it.", "before": "class Account {\n    private double balance;\n\n    public void setBalance(double balance) {\n        if (balance < 0) {\n            ", "blank": "return", "after": ";\n        }\n        this.balance = balance;\n    }\n}", "hint": "Exiting early from a void method just needs the bare keyword."}, {"lvl": 2, "prompt": "Make a field visible to subclasses and the same package, but not everywhere.", "before": "class Animal {\n    ", "blank": "protected int age", "after": ";\n}", "hint": "More open than private, more restrictive than public."}, {"lvl": 2, "prompt": "Declare a class-level constant that's safe to expose publicly since it can't change.", "before": "class Config {\n    ", "blank": "public static final int MAX_USERS = 100", "after": ";\n}", "hint": "public is safe here because static final prevents mutation."}, {"lvl": 3, "prompt": "Return a defensive copy instead of the live array, to preserve encapsulation.", "before": "class Roster {\n    private String[] names;\n\n    public String[] getNames() {\n        return ", "blank": "names.clone()", "after": ";\n    }\n}", "hint": "Returning the original array would let callers mutate private state."}, {"lvl": 3, "prompt": "Use package-private (no modifier) access for a helper method meant only for classes in the same package.", "before": "class Repository {\n    ", "blank": "void internalRefresh()", "after": " {\n    }\n}", "hint": "Omitting the access modifier entirely gives package-private visibility."}, {"lvl": 3, "prompt": "Declare a getter that computes a derived value rather than exposing a raw field.", "before": "class Rectangle {\n    private int width, height;\n\n    public int getArea() {\n        ", "blank": "return width * height", "after": ";\n    }\n}", "hint": "Getters don't have to return a stored field directly."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

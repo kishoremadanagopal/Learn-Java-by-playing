@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operators — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing operators in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Operators</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "operators",
+  title: "Operators",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Use the modulus operator to get the remainder of 10 divided by 3.", "before": "int rem = 10 ", "blank": "%", "after": " 3; // rem == 1", "hint": "Percent sign, not divide."}, {"lvl": 1, "prompt": "Increment i by one using shorthand notation.", "before": "int i = 0;\ni", "blank": "++", "after": ";", "hint": "Two of the same character."}, {"lvl": 1, "prompt": "Add 5 to total and store the result back into total, using a compound assignment.", "before": "total ", "blank": "+=", "after": " 5;", "hint": "Combine + and = into one operator."}, {"lvl": 2, "prompt": "Require both conditions to be true using logical AND.", "before": "if (isAdult ", "blank": "&&", "after": " hasTicket) {\n    allow();\n}", "hint": "Two ampersands."}, {"lvl": 2, "prompt": "Check that status is not equal to \"closed\".", "before": "if (status ", "blank": "!=", "after": " \"closed\") {\n    open();\n}", "hint": "The relational not-equal operator."}, {"lvl": 2, "prompt": "Write a ternary expression that picks the larger of a and b.", "before": "int max = (a > b) ", "blank": "? a : b", "after": ";", "hint": "condition ? valueIfTrue : valueIfFalse"}, {"lvl": 3, "prompt": "Combine AND and OR so entry is allowed if the person is an adult with an ID, or is a VIP.", "before": "boolean entry = ", "blank": "(age >= 18 && hasID) || isVIP", "after": ";", "hint": "Parenthesize the AND clause, then OR it with the VIP check."}, {"lvl": 3, "prompt": "Write the full ternary assignment for a pass/fail label based on score >= 60.", "before": "String result = ", "blank": "score >= 60 ? \"pass\" : \"fail\"", "after": ";", "hint": "The whole right-hand side is one ternary expression."}, {"lvl": 3, "prompt": "Use the ternary operator inside a println to print even or odd for n.", "before": "System.out.println(n % 2 == 0 ", "blank": "? \"even\" : \"odd\"", "after": ");", "hint": "Same ternary shape, just placed inside the print call."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

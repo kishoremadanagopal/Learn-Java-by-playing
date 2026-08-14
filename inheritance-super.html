@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inheritance & super — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing inheritance & super in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Inheritance & super</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "inheritance-super",
+  title: "Inheritance & super",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Make Dog inherit from Animal.", "before": "class Animal {\n    void eat() { System.out.println(\"eating\"); }\n}\n\nclass Dog ", "blank": "extends Animal", "after": " {\n}", "hint": "One keyword establishes a subclass relationship."}, {"lvl": 1, "prompt": "Create a Dog object and call the inherited eat method.", "before": "Dog d = new Dog();\nd", "blank": ".eat()", "after": "();", "hint": "Well actually \u2014 just call eat() on the object, no extra parens needed beyond the method call."}, {"lvl": 1, "prompt": "Declare Cat as a subclass of Animal.", "before": "class Animal {\n}\n\nclass Cat ", "blank": "extends Animal", "after": " {\n}", "hint": "Same keyword as the Dog example."}, {"lvl": 2, "prompt": "Call the parent class's constructor from the subclass constructor.", "before": "class Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n}\n\nclass Dog extends Animal {\n    Dog(String name) {\n        ", "blank": "super(name)", "after": ";\n    }\n}", "hint": "super(args) must be the first statement in the subclass constructor."}, {"lvl": 2, "prompt": "Call the parent class's version of makeSound before adding subclass behavior.", "before": "class Animal {\n    void makeSound() { System.out.println(\"...\"); }\n}\n\nclass Dog extends Animal {\n    void makeSound() {\n        ", "blank": "super.makeSound()", "after": ";\n        System.out.println(\"Woof\");\n    }\n}", "hint": "super.methodName() calls the parent's implementation."}, {"lvl": 2, "prompt": "Access a protected field from the parent class inside the subclass.", "before": "class Animal {\n    protected int age;\n}\n\nclass Dog extends Animal {\n    void birthday() {\n        ", "blank": "age++", "after": ";\n    }\n}", "hint": "protected fields are directly visible to subclasses, no qualifier needed."}, {"lvl": 3, "prompt": "Prevent Puppy from extending Dog further by sealing the class (final).", "before": "class Dog {\n}\n\n", "blank": "final class Puppy extends Dog", "after": " {\n}", "hint": "final on a class blocks any further subclassing."}, {"lvl": 3, "prompt": "Declare a constructor that forwards multiple arguments to the parent via super.", "before": "class Vehicle {\n    Vehicle(String make, int year) { }\n}\n\nclass Car extends Vehicle {\n    Car(String make, int year) {\n        ", "blank": "super(make, year)", "after": ";\n    }\n}", "hint": "super(args) forwards as many arguments as the parent constructor expects."}, {"lvl": 3, "prompt": "Reference the parent class's field explicitly when the subclass has a field of the same name.", "before": "class Animal {\n    String type = \"animal\";\n}\n\nclass Dog extends Animal {\n    String type = \"dog\";\n\n    void printBoth() {\n        System.out.println(", "blank": "super.type", "after": " + \" \" + type);\n    }\n}", "hint": "super.fieldName accesses the parent's shadowed field."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

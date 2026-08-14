@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exception handling — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing exception handling in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Exception handling</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "exceptions",
+  title: "Exception handling",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Open a try block around code that might fail.", "before": "", "blank": "try", "after": " {\n    int result = 10 / divisor;\n} catch (ArithmeticException e) {\n    System.out.println(\"cannot divide by zero\");\n}", "hint": "One keyword before the block that might throw."}, {"lvl": 1, "prompt": "Catch an ArithmeticException and handle it.", "before": "try {\n    int result = 10 / divisor;\n} ", "blank": "catch (ArithmeticException e)", "after": " {\n    System.out.println(\"cannot divide by zero\");\n}", "hint": "catch (ExceptionType variableName)"}, {"lvl": 1, "prompt": "Throw a new exception when input is invalid.", "before": "if (age < 0) {\n    ", "blank": "throw new IllegalArgumentException(\"age cannot be negative\")", "after": ";\n}", "hint": "throw new SomeException(\"message\");"}, {"lvl": 2, "prompt": "Add a finally block that always runs, whether or not an exception occurred.", "before": "try {\n    readFile();\n} catch (IOException e) {\n    System.out.println(\"failed\");\n} ", "blank": "finally", "after": " {\n    closeResources();\n}", "hint": "One keyword, no parentheses, always executes."}, {"lvl": 2, "prompt": "Catch two different exception types in one catch clause.", "before": "try {\n    risky();\n} ", "blank": "catch (IOException | SQLException e)", "after": " {\n    System.out.println(\"failed: \" + e.getMessage());\n}", "hint": "Separate multiple exception types with a pipe inside one catch."}, {"lvl": 2, "prompt": "Declare that this method might throw a checked exception, pushing handling to the caller.", "before": "void readFile(String path) ", "blank": "throws IOException", "after": " {\n    // ...\n}", "hint": "throws ExceptionType in the method signature, not throw."}, {"lvl": 3, "prompt": "Define a custom exception class that extends Exception.", "before": "", "blank": "class InsufficientFundsException extends Exception", "after": " {\n    InsufficientFundsException(String message) {\n        super(message);\n    }\n}", "hint": "Custom exceptions subclass Exception (or RuntimeException) and usually call super(message)."}, {"lvl": 3, "prompt": "Use try-with-resources so the resource closes automatically.", "before": "", "blank": "try (BufferedReader br = new BufferedReader(new FileReader(path)))", "after": " {\n    return br.readLine();\n}", "hint": "Resources declared in try(...) are closed automatically at the end of the block."}, {"lvl": 3, "prompt": "Re-throw a caught exception wrapped in a custom one, preserving the original as the cause.", "before": "try {\n    process();\n} catch (IOException e) {\n    ", "blank": "throw new ProcessingException(\"failed to process\", e)", "after": ";\n}", "hint": "Pass the original exception as a second constructor argument to preserve the cause chain."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

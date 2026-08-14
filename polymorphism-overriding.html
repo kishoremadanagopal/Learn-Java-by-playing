@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Polymorphism & overriding — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing polymorphism & overriding in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Polymorphism & overriding</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "polymorphism-overriding",
+  title: "Polymorphism & overriding",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Mark this method as overriding a parent class method.", "before": "class Dog extends Animal {\n    ", "blank": "@Override", "after": "\n    void makeSound() {\n        System.out.println(\"Woof\");\n    }\n}", "hint": "An annotation, starting with @, placed above the method."}, {"lvl": 1, "prompt": "Declare a variable of the parent type referencing a child object.", "before": "", "blank": "Animal a = new Dog()", "after": ";", "hint": "The declared type can be the superclass while the object is a subclass."}, {"lvl": 1, "prompt": "Override toString so printing an object shows something readable.", "before": "class Point {\n    int x, y;\n\n    @Override\n    ", "blank": "public String toString()", "after": " {\n        return \"(\" + x + \", \" + y + \")\";\n    }\n}", "hint": "toString's signature: public String toString()."}, {"lvl": 2, "prompt": "Override makeSound with a matching signature \u2014 same name, same parameters, same return type.", "before": "class Animal {\n    void makeSound() { }\n}\n\nclass Cat extends Animal {\n    @Override\n    ", "blank": "void makeSound()", "after": " {\n        System.out.println(\"Meow\");\n    }\n}", "hint": "An override's signature must exactly match the parent's."}, {"lvl": 2, "prompt": "Call makeSound through the parent-typed reference \u2014 it runs Dog's version at runtime.", "before": "Animal a = new Dog();\n", "blank": "a.makeSound()", "after": "; // runs Dog's override", "hint": "Dynamic dispatch picks the actual object's method, not the reference type's."}, {"lvl": 2, "prompt": "Use instanceof to safely check the runtime type before casting.", "before": "if (", "blank": "animal instanceof Dog", "after": ") {\n    Dog d = (Dog) animal;\n}", "hint": "object instanceof Type"}, {"lvl": 3, "prompt": "Override equals so two Point objects with the same coordinates are considered equal.", "before": "class Point {\n    int x, y;\n\n    @Override\n    public boolean equals(Object o) {\n        if (!(o instanceof Point)) return false;\n        Point p = (Point) o;\n        ", "blank": "return x == p.x && y == p.y", "after": ";\n    }\n}", "hint": "Compare each field after confirming the type and casting."}, {"lvl": 3, "prompt": "Prevent a method from being overridden further by subclasses.", "before": "class Animal {\n    ", "blank": "final void breathe()", "after": " {\n        System.out.println(\"breathing\");\n    }\n}", "hint": "final on a method blocks overriding in subclasses."}, {"lvl": 3, "prompt": "Loop through a list of Animal, relying on polymorphism to call each one's own makeSound.", "before": "for (Animal a : animals) {\n    ", "blank": "a.makeSound()", "after": ";\n}", "hint": "Each call resolves to the actual object's overridden method at runtime."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

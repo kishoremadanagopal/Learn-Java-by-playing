@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>If, else & switch — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing if, else & switch in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// If, else & switch</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "control-flow",
+  title: "If, else & switch",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Complete the branch that runs when the if condition is false.", "before": "if (age >= 18) {\n    System.out.println(\"adult\");\n} ", "blank": "else", "after": " {\n    System.out.println(\"minor\");\n}", "hint": "One keyword, no parentheses needed."}, {"lvl": 1, "prompt": "Chain another condition onto the else branch.", "before": "if (score >= 90) {\n    grade = \"A\";\n} ", "blank": "else if", "after": " (score >= 80) {\n    grade = \"B\";\n}", "hint": "Two keywords together, followed by a condition."}, {"lvl": 1, "prompt": "Open a switch statement on the variable day.", "before": "", "blank": "switch (day)", "after": " {\n    case 1:\n        System.out.println(\"Monday\");\n        break;\n}", "hint": "switch (variable)"}, {"lvl": 2, "prompt": "Stop a switch case from falling through into the next one.", "before": "switch (day) {\n    case 1:\n        System.out.println(\"Monday\");\n        ", "blank": "break", "after": ";\n    case 2:\n        System.out.println(\"Tuesday\");\n}", "hint": "One keyword exits the switch."}, {"lvl": 2, "prompt": "Add the default case that runs when nothing else matches.", "before": "switch (day) {\n    case 1:\n        System.out.println(\"Monday\");\n        break;\n    ", "blank": "default", "after": ":\n        System.out.println(\"unknown\");\n}", "hint": "The fallback label in a switch."}, {"lvl": 2, "prompt": "Write the ternary that assigns \"even\" or \"odd\" to a String.", "before": "String parity = (n % 2 == 0) ", "blank": "? \"even\" : \"odd\"", "after": ";", "hint": "condition ? ifTrue : ifFalse"}, {"lvl": 3, "prompt": "Use a switch expression (Java 14+) that yields a value directly with an arrow case.", "before": "int points = switch (grade) {\n    ", "blank": "case \"A\" -> 4", "after": ";\n    case \"B\" -> 3;\n    default -> 0;\n};", "hint": "Arrow-style case avoids break statements: case label -> value"}, {"lvl": 3, "prompt": "Combine multiple labels into a single switch case.", "before": "switch (month) {\n    ", "blank": "case 12, 1, 2", "after": ":\n        System.out.println(\"winter\");\n        break;\n}", "hint": "Comma-separate several case labels together."}, {"lvl": 3, "prompt": "Write a nested ternary that labels a score as high, mid, or low.", "before": "String tier = ", "blank": "score > 80 ? \"high\" : score > 50 ? \"mid\" : \"low\"", "after": ";", "hint": "A ternary's false branch can itself be another ternary."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

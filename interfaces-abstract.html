@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interfaces & abstract classes — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing interfaces & abstract classes in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Interfaces & abstract classes</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "interfaces-abstract",
+  title: "Interfaces & abstract classes",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Declare an interface named Flyable.", "before": "", "blank": "interface Flyable", "after": " {\n    void fly();\n}", "hint": "Interfaces use the interface keyword instead of class."}, {"lvl": 1, "prompt": "Make Bird implement the Flyable interface.", "before": "class Bird ", "blank": "implements Flyable", "after": " {\n    public void fly() {\n        System.out.println(\"flying\");\n    }\n}", "hint": "Classes use implements to fulfill an interface's contract."}, {"lvl": 1, "prompt": "Declare an abstract class that can't be instantiated directly.", "before": "", "blank": "abstract class Shape", "after": " {\n    abstract double area();\n}", "hint": "One keyword before class marks it abstract."}, {"lvl": 2, "prompt": "Declare an abstract method with no body inside the abstract class.", "before": "abstract class Shape {\n    ", "blank": "abstract double area()", "after": ";\n}", "hint": "Abstract methods end with a semicolon instead of a body."}, {"lvl": 2, "prompt": "Provide the required implementation of area in the concrete subclass.", "before": "class Circle extends Shape {\n    double radius;\n\n    @Override\n    ", "blank": "double area()", "after": " {\n        return Math.PI * radius * radius;\n    }\n}", "hint": "Concrete subclasses must implement every abstract method."}, {"lvl": 2, "prompt": "Implement a class against two interfaces at once.", "before": "class Duck ", "blank": "implements Flyable, Swimmable", "after": " {\n    public void fly() { }\n    public void swim() { }\n}", "hint": "A class can implement multiple interfaces, comma-separated."}, {"lvl": 3, "prompt": "Add a default method to an interface with a body, so implementers don't have to override it.", "before": "interface Greeter {\n    ", "blank": "default void greet()", "after": " {\n        System.out.println(\"hello\");\n    }\n}", "hint": "default methods in interfaces carry their own implementation."}, {"lvl": 3, "prompt": "Declare a functional interface \u2014 one abstract method, ready for a lambda.", "before": "@FunctionalInterface\n", "blank": "interface Calculator", "after": " {\n    int operate(int a, int b);\n}", "hint": "The keyword is the same as any interface; the annotation just documents intent."}, {"lvl": 3, "prompt": "Declare an abstract class that also has a constructor, since abstract classes can hold state.", "before": "abstract class Shape {\n    String color;\n\n    ", "blank": "Shape(String color)", "after": " {\n        this.color = color;\n    }\n}", "hint": "Abstract classes can have constructors even though they can't be instantiated directly."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

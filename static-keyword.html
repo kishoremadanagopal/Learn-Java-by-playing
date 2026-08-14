@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The static keyword — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing the static keyword in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// The static keyword</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "static-keyword",
+  title: "The static keyword",
+  fileBase: "Counter",
+  bank: [{"lvl": 1, "prompt": "Declare a static field shared by every instance of Counter.", "before": "class Counter {\n    ", "blank": "static int total = 0", "after": ";\n}", "hint": "One keyword before the type marks it as class-level."}, {"lvl": 1, "prompt": "Declare a static method that doesn't need an instance to be called.", "before": "class MathUtil {\n    ", "blank": "static int square(int n)", "after": " {\n        return n * n;\n    }\n}", "hint": "Same keyword as a static field, before the return type."}, {"lvl": 1, "prompt": "Call the static square method directly on the class.", "before": "int result = ", "blank": "MathUtil.square(4)", "after": ";", "hint": "ClassName.methodName(args) \u2014 no object needed."}, {"lvl": 2, "prompt": "Increment the shared static counter from an instance method.", "before": "class Counter {\n    static int total = 0;\n\n    Counter() {\n        ", "blank": "total++", "after": ";\n    }\n}", "hint": "Static fields are accessed like normal variables from within the class."}, {"lvl": 2, "prompt": "Access a static field through the class name from outside the class.", "before": "int count = ", "blank": "Counter.total", "after": ";", "hint": "ClassName.fieldName"}, {"lvl": 2, "prompt": "Declare a static final constant for the maximum allowed size.", "before": "class Config {\n    ", "blank": "static final int MAX_SIZE = 100", "after": ";\n}", "hint": "Combine static and final for a shared, unchangeable constant."}, {"lvl": 3, "prompt": "Write a static initializer block that sets up a static field once when the class loads.", "before": "class Config {\n    static int[] table;\n\n    ", "blank": "static {\n        table = new int[10];\n    }", "after": "\n}", "hint": "static { ... } runs once, when the class is first loaded."}, {"lvl": 3, "prompt": "Declare a static factory method that returns a new Counter instance.", "before": "class Counter {\n    ", "blank": "static Counter create()", "after": " {\n        return new Counter();\n    }\n}", "hint": "The return type is the class itself; the method is static."}, {"lvl": 3, "prompt": "From inside a static method, call another static method without qualifying it.", "before": "class MathUtil {\n    static int square(int n) { return n * n; }\n\n    static int quad(int n) {\n        return ", "blank": "square(square(n))", "after": ";\n    }\n}", "hint": "Static methods in the same class can call each other by name alone."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Constructors — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing constructors in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Constructors</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "constructors",
+  title: "Constructors",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Declare a no-argument constructor for Student.", "before": "class Student {\n    String name = \"unknown\";\n\n    ", "blank": "Student()", "after": " {\n    }\n}", "hint": "Same name as the class, no return type, no parameters."}, {"lvl": 1, "prompt": "Declare a parameterized constructor that sets the name field.", "before": "class Student {\n    String name;\n\n    ", "blank": "Student(String name)", "after": " {\n        this.name = name;\n    }\n}", "hint": "Constructor name matches the class, parameters go in parentheses."}, {"lvl": 1, "prompt": "Create a new Student object using the parameterized constructor.", "before": "Student s = ", "blank": "new Student(\"Ana\")", "after": ";", "hint": "new ClassName(arguments)"}, {"lvl": 2, "prompt": "Call the parameterized constructor from the no-argument constructor with a default value.", "before": "class Student {\n    String name;\n\n    Student() {\n        ", "blank": "this(\"unknown\")", "after": ";\n    }\n\n    Student(String name) {\n        this.name = name;\n    }\n}", "hint": "this(args) chains to another constructor in the same class."}, {"lvl": 2, "prompt": "Overload the constructor to also accept an age parameter.", "before": "class Student {\n    String name;\n    int age;\n\n    Student(String name) { this.name = name; }\n\n    ", "blank": "Student(String name, int age)", "after": " {\n        this.name = name;\n        this.age = age;\n    }\n}", "hint": "Same constructor name, different parameter list."}, {"lvl": 2, "prompt": "Call the superclass constructor explicitly as the first line of the subclass constructor.", "before": "class Employee extends Person {\n    Employee(String name) {\n        ", "blank": "super(name)", "after": ";\n    }\n}", "hint": "super(args) invokes the parent class's constructor."}, {"lvl": 3, "prompt": "Write a constructor that validates age before assigning it, throwing if invalid.", "before": "class Student {\n    int age;\n\n    Student(int age) {\n        if (age < 0) {\n            ", "blank": "throw new IllegalArgumentException(\"age must be positive\")", "after": ";\n        }\n        this.age = age;\n    }\n}", "hint": "throw new SomeException(\"message\");"}, {"lvl": 3, "prompt": "Declare a private constructor to enforce use of a static factory method.", "before": "class Singleton {\n    ", "blank": "private Singleton()", "after": " {\n    }\n\n    static Singleton create() {\n        return new Singleton();\n    }\n}", "hint": "Access modifiers apply to constructors too."}, {"lvl": 3, "prompt": "Chain three constructors together, each calling the next with a default value.", "before": "class Box {\n    int w, h, d;\n\n    Box() {\n        this(1);\n    }\n\n    Box(int w) {\n        ", "blank": "this(w, w, w)", "after": ";\n    }\n\n    Box(int w, int h, int d) {\n        this.w = w; this.h = h; this.d = d;\n    }\n}", "hint": "Pass w for all three dimensions to the three-argument constructor."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

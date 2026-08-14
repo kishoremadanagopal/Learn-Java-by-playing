@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Variables & data types — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing variables & data types in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Variables & data types</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "variables-data-types",
+  title: "Variables & data types",
+  fileBase: "Main",
+  bank: [{"lvl": 1, "prompt": "Declare an int variable named score initialized to zero.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "int score = 0", "after": ";\n    }\n}", "hint": "type name = value;"}, {"lvl": 1, "prompt": "Declare a boolean flag that starts as true.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "boolean isActive = true", "after": ";\n    }\n}", "hint": "The boolean type only holds true or false."}, {"lvl": 1, "prompt": "Declare a double named price with the value 19.99.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "double price = 19.99", "after": ";\n    }\n}", "hint": "Decimal values default to double."}, {"lvl": 2, "prompt": "Declare a constant that can never be reassigned.", "before": "public class Circle {\n    ", "blank": "final double PI = 3.14", "after": ";\n}", "hint": "One keyword before the type locks the value."}, {"lvl": 2, "prompt": "Declare a char holding the letter A.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "char grade = 'A'", "after": ";\n    }\n}", "hint": "Char literals use single quotes, not double."}, {"lvl": 2, "prompt": "Declare a long to hold a value too big for int, using the required suffix.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "long population = 7800000000L", "after": ";\n    }\n}", "hint": "long literals need a trailing L so javac doesn't treat them as int."}, {"lvl": 3, "prompt": "Declare three int variables in a single statement.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "int a = 1, b = 2, c = 3", "after": ";\n    }\n}", "hint": "Comma-separate multiple declarations of the same type."}, {"lvl": 3, "prompt": "Use local variable type inference to declare a String.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "var name = \"Java\"", "after": ";\n    }\n}", "hint": "Java 10 added a keyword that infers the type from the initializer."}, {"lvl": 3, "prompt": "Declare a byte variable holding 100 \u2014 the smallest whole-number type that fits it.", "before": "public class Main {\n    public static void main(String[] args) {\n        ", "blank": "byte level = 100", "after": ";\n    }\n}", "hint": "byte is the smallest integer type, range -128 to 127."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>

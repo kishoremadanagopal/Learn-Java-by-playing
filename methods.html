@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Methods & overloading — java.quest</title>
+<meta name="description" content="A typing arcade game for practicing methods & overloading in Java." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/game.css">
+</head>
+<body>
+<div class="stage">
+
+  <div class="titlebar">
+    <div class="logo">java<span>.</span>quest</div>
+    <a class="back-link" href="../index.html">&larr; all topics</a>
+    <div class="tagline">// Methods & overloading</div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-group">
+      <div>
+        <div class="stat-label">Lives</div>
+        <div class="lives" id="lives"></div>
+      </div>
+      <div>
+        <div class="stat-label">Score</div>
+        <div class="stat-value" id="score">0</div>
+      </div>
+      <div>
+        <div class="stat-label">Streak</div>
+        <div class="stat-value"><span class="streak-flame">&#9679;</span> <span id="streak">0</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="text-align:right;">Best</div>
+      <div class="stat-value" id="best">0</div>
+    </div>
+  </div>
+
+  <div id="game-area">
+    <div class="timer-track" id="timer-track"><div class="timer-fill" id="timer-fill"></div></div>
+
+    <div class="editor" id="editor">
+      <div class="editor-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="filename" id="filename">Main.java</div>
+        <div class="level-pill" id="level-pill">Level 1</div>
+      </div>
+      <div class="prompt" id="prompt"></div>
+      <pre class="code" id="code"></pre>
+      <div class="input-row">
+        <span class="caret">&gt;</span>
+        <input id="answer" type="text" placeholder="type the missing code" autocomplete="off" spellcheck="false" />
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="btn-row">
+      <button class="primary" id="submit-btn">Run &#9654;</button>
+      <button id="hint-btn">Hint</button>
+      <button class="ghost" id="skip-btn">Skip</button>
+    </div>
+
+    <div class="console" id="console"></div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <h2 id="overlay-title">Build failed</h2>
+    <div class="big" id="overlay-score">0</div>
+    <p id="overlay-sub">final score</p>
+    <button class="primary" id="restart-btn">Play again</button>
+  </div>
+
+</div>
+
+<script>
+window.TOPIC = {
+  slug: "methods",
+  title: "Methods & overloading",
+  fileBase: "Calculator",
+  bank: [{"lvl": 1, "prompt": "Declare a method named greet that takes no parameters and returns nothing.", "before": "class Main {\n    ", "blank": "void greet()", "after": " {\n        System.out.println(\"hi\");\n    }\n}", "hint": "returnType name(parameters)"}, {"lvl": 1, "prompt": "Return the sum of a and b from this method.", "before": "int add(int a, int b) {\n    ", "blank": "return a + b", "after": ";\n}", "hint": "The return keyword followed by the value."}, {"lvl": 1, "prompt": "Call the greet method from main.", "before": "public static void main(String[] args) {\n    ", "blank": "greet()", "after": ";\n}", "hint": "Just the method name with parentheses."}, {"lvl": 2, "prompt": "Declare a second add overload that takes three ints instead of two.", "before": "int add(int a, int b) { return a + b; }\n\n", "blank": "int add(int a, int b, int c)", "after": " {\n    return a + b + c;\n}", "hint": "Same method name, different parameter list \u2014 that's overloading."}, {"lvl": 2, "prompt": "Declare an overload of area that accepts a double radius for circles.", "before": "int area(int side) { return side * side; }\n\n", "blank": "double area(double radius)", "after": " {\n    return Math.PI * radius * radius;\n}", "hint": "Different parameter type is enough to overload."}, {"lvl": 2, "prompt": "Give the width parameter a default-like fallback by overloading with fewer arguments.", "before": "int area(int width, int height) { return width * height; }\n\n", "blank": "int area(int side)", "after": " {\n    return area(side, side);\n}", "hint": "A one-parameter overload can call the two-parameter version internally."}, {"lvl": 3, "prompt": "Declare a varargs method that accepts any number of ints.", "before": "", "blank": "int sum(int... numbers)", "after": " {\n    int total = 0;\n    for (int n : numbers) total += n;\n    return total;\n}", "hint": "Three dots after the type mean 'zero or more' arguments."}, {"lvl": 3, "prompt": "Call the overloaded print method, letting Java pick the String version.", "before": "void print(int x) { System.out.println(x); }\nvoid print(String s) { System.out.println(s); }\n\nvoid run() {\n    ", "blank": "print(\"hello\")", "after": ";\n}", "hint": "Java resolves overloads at compile time based on argument type."}, {"lvl": 3, "prompt": "Declare a method that returns an array of ints.", "before": "", "blank": "int[] range(int n)", "after": " {\n    int[] out = new int[n];\n    for (int i = 0; i < n; i++) out[i] = i;\n    return out;\n}", "hint": "The return type itself can be an array type."}]
+};
+</script>
+<script src="../assets/game.js"></script>
+</body>
+</html>
